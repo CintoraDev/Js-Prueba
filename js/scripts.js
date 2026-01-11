@@ -77,10 +77,37 @@ formulario.addEventListener("submit", function (e) {
   const { nombre, email, mensaje } = datos;
 
   if (nombre === "" || email === "" || mensaje === "") {
-    console.log("FORMULARIO NO ENVIADO (Rellena todos los campos)");
+    mostrarError("Todos lo campos son obligatorios");
     return;
   }
 
-  // Enviar formulario
-  console.log("ENVIANDO FORMULARIO :D");
+  //Crear Alerta Enviar formulario
+  mostrarMensaje("Se ha enviado el formulario de forma exitosa!!");
 });
+
+//Funcion Mostrar Error en Pantalla
+function mostrarError(mensaje){
+  const error = document.createElement('P');
+  error.textContent = mensaje;
+  error.classList.add('error');
+  console.log(error);
+
+  formulario.appendChild(error);
+
+  //desaparesca despues de segundos
+  setTimeout(() => {
+    error.remove();
+  },2000);
+}
+
+
+function mostrarMensaje(mensaje){
+  const alerta = document.createElement('P');
+  alerta.textContent = mensaje;
+  alerta.classList.add('correcto');
+  console.log(alerta);
+  formulario.appendChild(alerta);
+  setTimeout(() => {
+    alerta.remove();
+  }, 2000);
+}
